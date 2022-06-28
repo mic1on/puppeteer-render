@@ -1,0 +1,40 @@
+{
+  "name": "puppeteer-render",
+  "author": "jcnd@163.com",
+  "version": "1.0.0",
+  "description": "基于puppeteer和NodeJS的服务端渲染，提供Docker一键部署及API调用接口。",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js",
+    "test": "mocha",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.js": [
+      "prettier --print-width 100 --single-quote --trailing-comma all --no-semi --write",
+      "git add"
+    ]
+  },
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "content-disposition": "^0.5.2",
+    "express": "^4.16.3",
+    "lodash": "^4.17.20",
+    "pixelmatch": "^5.2.1",
+    "pngjs": "^6.0.0",
+    "puppeteer": "^11.0.0",
+    "qs": "^6.10.1",
+    "user-agents": "^1.0.1060",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "fs": "^0.0.1-security",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.2.0",
+    "mocha": "^9.1.2",
+    "prettier": "^2.4.1"
+  }
+}
