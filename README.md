@@ -61,6 +61,11 @@ POST http://127.0.0.1:3000/render
 ```
 完整的API接口请查看：[接口文档](https://www.apifox.cn/apidoc/shared-6dcc2010-6913-4fe0-88a3-333791d80548)
 
+## fuck模式
+
+利用的`puppeteer-extra-plugin-stealth`插件中提取的stealth.min.js文件。
+参考文章：[最完美方案！模拟浏览器如何正确隐藏特征](https://mp.weixin.qq.com/s/Bge-_yiatSq4CQq7fRvjdQ)
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
