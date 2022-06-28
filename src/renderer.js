@@ -17,7 +17,7 @@ class Renderer {
       const html = await page.content()
       return html
     } finally {
-      this.closePage(page)
+      await this.closePage(page)
     }
   }
 
@@ -32,7 +32,7 @@ class Renderer {
       const buffer = await page.pdf(pdfOptions)
       return buffer
     } finally {
-      this.closePage(page)
+      await this.closePage(page)
     }
   }
 
@@ -57,7 +57,7 @@ class Renderer {
         buffer,
       }
     } finally {
-      this.closePage(page)
+      await this.closePage(page)
     }
   }
 
