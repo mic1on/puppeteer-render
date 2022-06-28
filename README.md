@@ -52,10 +52,14 @@ POST http://127.0.0.1:3000/render
   "cookies": "...", // 可选，设置cookies，格式为cookies字符串，可以直接从浏览器抓包复制。例如："_ga=GA1.2.1234567890.1548994800; _gid=GA1.2.1234567890.1548994800; _gat=1"
   "headers": {
     "...": "...", // 可选，设置headers，格式为headers对象，可以直接从浏览器抓包复制。例如：{"Accept-Language": "zh-CN,zh;q=0.9"}
+  },
+  "credentials": {  // 可选，设置credentials，例如：{"username": "...", "password": "..."}
+     "username": "...", // 可选，设置用户名
+     "password": "..." // 可选，设置密码
   }
 }
 ```
-
+完整的API接口请查看：[接口文档](https://www.apifox.cn/apidoc/shared-6dcc2010-6913-4fe0-88a3-333791d80548)
 
 ## License
 
