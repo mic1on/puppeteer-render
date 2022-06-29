@@ -7,7 +7,7 @@ let renderer = null
 createRenderer({
   ignoreHTTPSErrors: !!process.env.IGNORE_HTTPS_ERRORS,
   ignoreDefaultArgs: ['--enable-automation'],
-  headless: false
+  headless: true
 }).then(rendered => {
   renderer = rendered
   console.info('Initialized renderer.')
