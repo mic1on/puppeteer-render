@@ -16,7 +16,7 @@ jobs:
         with:
           publish: true
           imageName: miclon/puppeteer-render
-          tags: latest
+          tag: latest
           platform: linux/amd64,linux/arm64,linux/arm/v7
-          dockerHubUser: ${{ secrets.DOCKER_USERNAME }}
-          dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
+          dockerUser: ${{ secrets.DOCKER_USERNAME }}
+          dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
