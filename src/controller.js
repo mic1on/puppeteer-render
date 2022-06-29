@@ -6,6 +6,8 @@ let renderer = null
 
 createRenderer({
   ignoreHTTPSErrors: !!process.env.IGNORE_HTTPS_ERRORS,
+  ignoreDefaultArgs: ['--enable-automation'],
+  headless: false
 }).then(rendered => {
   renderer = rendered
   console.info('Initialized renderer.')
@@ -26,7 +28,7 @@ const renderHandler = async (req, res, next) => {
   try {
     switch (type) {
       case 'pdf':
-        const pdfFileName = filename || getFileName(url)
+        let pdfFileName = filename || getFileName(url)
         if (!pdfFileName.toLowerCase().endsWith('.pdf')) {
           pdfFileName += '.pdf'
         }

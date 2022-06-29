@@ -1,9 +1,9 @@
 import fs from 'fs'
 import puppeteer from 'puppeteer'
 
-import { pageSchema, pdfSchema, screenshotSchema } from './schemas/index.js'
+import {pageSchema, pdfSchema, screenshotSchema} from './schemas/index.js'
 import waitForAnimations from './wait-for-animations.js'
-import { randomUserAgent } from './utils.js'
+import {randomUserAgent} from './utils.js'
 
 class Renderer {
   constructor(browser) {
@@ -14,8 +14,7 @@ class Renderer {
     let page = null
     try {
       page = await this.createPage(url, options)
-      const html = await page.content()
-      return html
+      return await page.content()
     } finally {
       await this.closePage(page)
     }
@@ -29,8 +28,7 @@ class Renderer {
       page = await this.createPage(url, extraOptions)
       const pdfOptions = await pdfSchema.validate(pdf)
 
-      const buffer = await page.pdf(pdfOptions)
-      return buffer
+      return await page.pdf(pdfOptions)
     } finally {
       await this.closePage(page)
     }
@@ -76,7 +74,8 @@ class Renderer {
     const page = await this.browser.newPage()
 
     page.setUserAgent(randomUserAgent())
-
+    // remove webdriver
+    await page.evaluateOnNewDocument('const newProto = navigator.__proto__;delete newProto.webdriver;navigator.__proto__ = newProto;');
     if (mode === 'fuck') {
       const preloadFile = fs.readFileSync('src/stealth.min.js', 'utf8')
       await page.evaluateOnNewDocument(preloadFile)
@@ -133,7 +132,9 @@ class Renderer {
 }
 
 async function create(options = {}) {
-  const browser = await puppeteer.launch(Object.assign({ args: ['--no-sandbox', '--disable-web-security'] }, options))
+  const browser = await puppeteer.launch(Object.assign(
+    { args: ['--no-sandbox', '--disable-web-security'] }, options)
+  )
   return new Renderer(browser)
 }
 

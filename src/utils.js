@@ -3,7 +3,7 @@ import UserAgent from 'user-agents'
 
 
 const getFileName = (url) => {
-  let filename = 'file'
+  let filename
   const urlObj = new URL(url)
   filename = urlObj.hostname
   if (urlObj.pathname !== '/') {
