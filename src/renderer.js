@@ -72,49 +72,51 @@ class Renderer {
       waitForXPath
     } = await pageSchema.validate(options)
     const page = await this.browser.newPage()
-
-    page.setUserAgent(randomUserAgent())
-    // remove webdriver
-    await page.evaluateOnNewDocument('const newProto = navigator.__proto__;delete newProto.webdriver;navigator.__proto__ = newProto;');
-    if (mode === 'fuck') {
-      const preloadFile = fs.readFileSync('src/stealth.min.js', 'utf8')
-      await page.evaluateOnNewDocument(preloadFile)
-    }
-    if (headers) {
-      await page.setExtraHTTPHeaders(headers)
-    }
-    // add cookies
-    if (cookies) {
-      const cookiesArray = cookies.split('; ').map(cookie => {
-        const [name, ...value] = cookie.split('=')
-        return { name, value: value.join('='), url }
-      })
-      await page.setCookie(...cookiesArray)
-    }
-
-    await page.setCacheEnabled(false)
-
-    page.on('error', async error => {
-      console.error(error)
-      await this.closePage(page)
-    })
-
-    if (emulateMediaType) {
-      await page.emulateMediaType(emulateMediaType)
-    }
-
-    if (credentials) {
-      await page.authenticate(credentials)
-    }
-
-    if (waitForXPath) {
-      const { xpath, ...xpathOptions } = waitForXPath
-      if (xpath) {
-        await page.waitForXPath(xpath, xpathOptions)
+    try {
+      page.setUserAgent(randomUserAgent())
+      // remove webdriver
+      await page.evaluateOnNewDocument('const newProto = navigator.__proto__;delete newProto.webdriver;navigator.__proto__ = newProto;');
+      if (mode === 'fuck') {
+        const preloadFile = fs.readFileSync('src/stealth.min.js', 'utf8')
+        await page.evaluateOnNewDocument(preloadFile)
       }
-    }
+      if (headers) {
+        await page.setExtraHTTPHeaders(headers)
+      }
+      // add cookies
+      if (cookies) {
+        const cookiesArray = cookies.split('; ').map(cookie => {
+          const [name, ...value] = cookie.split('=')
+          return { name, value: value.join('='), url }
+        })
+        await page.setCookie(...cookiesArray)
+      }
 
-    await page.goto(url, { timeout, waitUntil })
+      await page.setCacheEnabled(false)
+
+      page.on('error', async error => {
+        console.error(error)
+        await this.closePage(page)
+      })
+
+      if (emulateMediaType) {
+        await page.emulateMediaType(emulateMediaType)
+      }
+
+      if (credentials) {
+        await page.authenticate(credentials)
+      }
+
+      if (waitForXPath) {
+        const { xpath, ...xpathOptions } = waitForXPath
+        if (xpath) {
+          await page.waitForXPath(xpath, xpathOptions)
+        }
+      }
+
+      await page.goto(url, { timeout, waitUntil })
+      return page
+    } catch (e) {}
     return page
   }
 
