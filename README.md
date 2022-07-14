@@ -1,6 +1,8 @@
 # puppeteer api
 #### 基于puppeteer和Node的服务端渲染，提供Docker一键部署及API调用接口。
 
+![](https://miclon-job.oss-cn-hangzhou.aliyuncs.com/img/20220714221947.png)
+
 ## 功能 features
 
 - [x] 支持三种渲染模式的API接口（HTML、PDF、screenshots)
@@ -29,6 +31,7 @@ POST http://127.0.0.1:3000/render
 
 {
   "url": "https://www.baidu.com", // 必要参数
+  "mode": "fuck" // 可选，隐藏浏览器特征
   "timeout": 30000, // 超时时间，默认30000ms
   "waitUntil": "load", // 渲染完成时等待的事件，默认load，可选：load、domcontentloaded、networkidle0、networkidle2
   "type": "pdf",  // 三种模式：html, pdf, screenshot
