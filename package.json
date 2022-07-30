@@ -8,7 +8,8 @@
     "dev": "nodemon src/app.js",
     "start": "node src/app.js",
     "test": "mocha",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "lint:eslint": "eslint src/**/*.{js,ts} --fix"
   },
   "lint-staged": {
     "{src,test}/**/*.js": [
@@ -16,11 +17,14 @@
       "git add"
     ]
   },
-  "type": "module",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
+    "@mozilla/readability": "^0.4.2",
+    "body-parser": "^1.20.0",
     "content-disposition": "^0.5.2",
     "express": "^4.16.3",
+    "jsdom": "^20.0.0",
     "lodash": "^4.17.20",
     "pixelmatch": "^5.2.1",
     "pngjs": "^6.0.0",
@@ -31,6 +35,8 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
+    "eslint": ">=5.16.0",
+    "eslint-config-google": "^0.14.0",
     "fs": "^0.0.1-security",
     "husky": "^7.0.2",
     "lint-staged": "^11.2.0",
