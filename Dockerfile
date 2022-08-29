@@ -1,11 +1,8 @@
 FROM zenato/puppeteer
 
 USER root
-RUN apt-get update -y && apt-get install curl -y
-
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash \
-&& apt-get update \
-&& apt-get install -y nodejs
+RUN npm install n -g \
+&& n latest
 
 COPY . /app
 
