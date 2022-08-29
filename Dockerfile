@@ -1,6 +1,8 @@
 FROM zenato/puppeteer
 
 USER root
+RUN npm install n -g \
+&& n 14.19.0
 
 COPY . /app
 
