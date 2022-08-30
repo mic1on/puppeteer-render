@@ -1,5 +1,6 @@
 import fs from 'fs'
 import puppeteer from 'puppeteer'
+import useProxy from 'puppeteer-page-proxy'
 
 import {pageSchema, pdfSchema, screenshotSchema} from './schemas/index.js'
 import waitForAnimations from './wait-for-animations.js'
@@ -69,7 +70,8 @@ class Renderer {
       emulateMediaType,
       headers,
       cookies,
-      waitForXPath
+      waitForXPath,
+      proxy
     } = await pageSchema.validate(options)
     const page = await this.browser.newPage()
     try {
@@ -82,6 +84,9 @@ class Renderer {
       }
       if (headers) {
         await page.setExtraHTTPHeaders(headers)
+      }
+      if (proxy) {
+        await useProxy(page, proxy)
       }
       // add cookies
       if (cookies) {

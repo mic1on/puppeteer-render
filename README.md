@@ -8,7 +8,7 @@
 - [x] 支持三种渲染模式的API接口（HTML、PDF、screenshots)
 - [x] 支持随机动态user-agent
 - [x] 支持在fuck模式下隐藏浏览器特征
-- [x] 支持自定义cookies、自定义headers
+- [x] 支持自定义cookies、自定义headers、自定义代理proxy
 
 ## 运行
 
@@ -56,6 +56,7 @@ POST http://127.0.0.1:3000/render
   "headers": {
     "...": "...", // 可选，设置headers，格式为headers对象，可以直接从浏览器抓包复制。例如：{"Accept-Language": "zh-CN,zh;q=0.9"}
   },
+  "proxy": "",
   "credentials": {  // 可选，设置credentials，例如：{"username": "...", "password": "..."}
      "username": "...", // 可选，设置用户名
      "password": "..." // 可选，设置密码

@@ -8,6 +8,7 @@ const pageSchema = yup.object({
     password: yup.string()
   }),
   headers: yup.object(),
+  proxy: yup.string(),
   cookies: yup.string(),
   emulateMediaType: yup.string(),
   waitForXPath: yup.object({
