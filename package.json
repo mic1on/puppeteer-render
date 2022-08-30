@@ -29,6 +29,7 @@
     "pixelmatch": "^5.2.1",
     "pngjs": "^6.0.0",
     "puppeteer": "^11.0.0",
+    "puppeteer-page-proxy": "^1.2.8",
     "qs": "^6.10.1",
     "user-agents": "^1.0.1060",
     "yup": "^0.32.9"
